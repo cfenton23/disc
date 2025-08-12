@@ -1,0 +1,18 @@
+{
+  "ui": {
+    "hover": "sfx/ui_hover.ogg",
+    "click": "sfx/ui_click.ogg",
+    "confirm": "sfx/ui_confirm.ogg",
+    "error": "sfx/ui_error.ogg"
+  },
+  "rewards": {
+    "unlock": "sfx/reward_unlock.ogg",
+    "drop": "sfx/reward_drop.ogg",
+    "talent": "sfx/talent_unlock.ogg"
+  },
+  "tournament": {
+    "meterTick": "sfx/meter_tick.ogg",
+    "sweetSpot": "sfx/meter_sweet.ogg",
+    "chainHit": "sfx/chain_hit.ogg"
+  }
+}

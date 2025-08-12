@@ -1,0 +1,16 @@
+{
+  "order": ["New Career", "Play Random 18", "Clubhouse", "Options", "Accessibility / Dev Mode"],
+  "routes": {
+    "New Career": {"scene": null},
+    "Play Random 18": {"scene": "TournamentScene", "data": {"mode": "random-18"}},
+    "Clubhouse": {"scene": null},
+    "Options": {"scene": null},
+    "Accessibility / Dev Mode": {"scene": null}
+  },
+  "layout": {
+    "maxWidth": 520,
+    "rowHeight": 52,
+    "topGap": 24,
+    "bottomGap": 40
+  }
+}

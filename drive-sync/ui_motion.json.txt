@@ -1,0 +1,22 @@
+{
+  "durations": { "fast": 120, "base": 180, "slow": 260 },
+  "easings": {
+    "in": "cubic-bezier(0.4, 0, 1, 1)",
+    "out": "cubic-bezier(0, 0, 0.2, 1)",
+    "inOut": "cubic-bezier(0.4, 0, 0.2, 1)"
+  },
+  "micro": {
+    "hoverPop": { "scale": 1.05, "duration": "fast", "easing": "out" },
+    "press": { "scale": 0.98, "duration": 80, "easing": "inOut" },
+    "unlockBurst": { "particles": 12, "radius": 40, "duration": 400 }
+  },
+  "transitions": {
+    "panelIn": { "fromY": 12, "opacityFrom": 0, "duration": "base", "easing": "out" },
+    "modalIn": { "fromY": 20, "opacityFrom": 0, "duration": "slow", "easing": "out", "backdropBlur": 6 },
+    "route": { "fade": true, "duration": 220, "easing": "inOut" }
+  },
+  "hud": {
+    "toast": { "slideFrom": "bottom", "duration": "base" },
+    "meterSweetSpotPulse": { "scale": 1.08, "duration": "fast" }
+  }
+}

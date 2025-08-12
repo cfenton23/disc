@@ -1,0 +1,30 @@
+{
+  "courses": [
+    {
+      "id": "lakeview_pines_47291",
+      "name": "Lakeview Pines (Seed 47291)",
+      "seed": 47291,
+      "totalPar": 61,
+      "holes": [
+        { "n": 1, "par": 3, "lengthFt": 282, "fairwayWidth": "medium", "elevation": "downhill", "hazards": ["OB_path"], "windProfile": "sheltered", "pinGuard": "none", "recommendedLine": "anhyzer", "minimapImage": "minimaps/lakeview_pines_47291_h01.png" },
+        { "n": 2, "par": 3, "lengthFt": 242, "fairwayWidth": "medium", "elevation": "flat", "hazards": [], "windProfile": "open", "pinGuard": "none", "recommendedLine": "anhyzer", "minimapImage": "minimaps/lakeview_pines_47291_h02.png" },
+        { "n": 3, "par": 3, "lengthFt": 312, "fairwayWidth": "wide", "elevation": "uphill", "hazards": ["bunker_mound"], "windProfile": "open", "pinGuard": "none", "recommendedLine": "anhyzer", "minimapImage": "minimaps/lakeview_pines_47291_h03.png" },
+        { "n": 4, "par": 3, "lengthFt": 272, "fairwayWidth": "narrow", "elevation": "flat", "hazards": ["trees_right"], "windProfile": "mixed", "pinGuard": "trees", "recommendedLine": "hyzer", "minimapImage": "minimaps/lakeview_pines_47291_h04.png" },
+        { "n": 5, "par": 3, "lengthFt": 353, "fairwayWidth": "narrow", "elevation": "downhill", "hazards": ["tight_gap"], "windProfile": "open", "pinGuard": "none", "recommendedLine": "straight", "minimapImage": "minimaps/lakeview_pines_47291_h05.png" },
+        { "n": 6, "par": 4, "lengthFt": 569, "fairwayWidth": "medium", "elevation": "flat", "hazards": ["trees_both"], "windProfile": "sheltered", "pinGuard": "light", "recommendedLine": "S-curve", "minimapImage": "minimaps/lakeview_pines_47291_h06.png" },
+        { "n": 7, "par": 3, "lengthFt": 362, "fairwayWidth": "wide", "elevation": "flat", "hazards": ["water_long"], "windProfile": "open", "pinGuard": "none", "recommendedLine": "hyzer", "minimapImage": "minimaps/lakeview_pines_47291_h07.png" },
+        { "n": 8, "par": 3, "lengthFt": 335, "fairwayWidth": "narrow", "elevation": "uphill", "hazards": ["trees_left"], "windProfile": "mixed", "pinGuard": "light", "recommendedLine": "straight", "minimapImage": "minimaps/lakeview_pines_47291_h08.png" },
+        { "n": 9, "par": 4, "lengthFt": 528, "fairwayWidth": "wide", "elevation": "downhill", "hazards": ["OB_path"], "windProfile": "open", "pinGuard": "none", "recommendedLine": "S-curve", "minimapImage": "minimaps/lakeview_pines_47291_h09.png" },
+        { "n": 10, "par": 3, "lengthFt": 330, "fairwayWidth": "medium", "elevation": "flat", "hazards": ["trees_both"], "windProfile": "sheltered", "pinGuard": "trees", "recommendedLine": "anhyzer", "minimapImage": "minimaps/lakeview_pines_47291_h10.png" },
+        { "n": 11, "par": 3, "lengthFt": 305, "fairwayWidth": "narrow", "elevation": "downhill", "hazards": ["tight_gap"], "windProfile": "mixed", "pinGuard": "light", "recommendedLine": "straight", "minimapImage": "minimaps/lakeview_pines_47291_h11.png" },
+        { "n": 12, "par": 4, "lengthFt": 469, "fairwayWidth": "wide", "elevation": "flat", "hazards": ["trees_right"], "windProfile": "open", "pinGuard": "none", "recommendedLine": "hyzer", "minimapImage": "minimaps/lakeview_pines_47291_h12.png" },
+        { "n": 13, "par": 3, "lengthFt": 351, "fairwayWidth": "narrow", "elevation": "uphill", "hazards": ["trees_left"], "windProfile": "sheltered", "pinGuard": "trees", "recommendedLine": "hyzer", "minimapImage": "minimaps/lakeview_pines_47291_h13.png" },
+        { "n": 14, "par": 4, "lengthFt": 647, "fairwayWidth": "medium", "elevation": "flat", "hazards": ["water_short"], "windProfile": "mixed", "pinGuard": "light", "recommendedLine": "S-curve", "minimapImage": "minimaps/lakeview_pines_47291_h14.png" },
+        { "n": 15, "par": 3, "lengthFt": 375, "fairwayWidth": "wide", "elevation": "downhill", "hazards": ["trees_both"], "windProfile": "open", "pinGuard": "none", "recommendedLine": "straight", "minimapImage": "minimaps/lakeview_pines_47291_h15.png" },
+        { "n": 16, "par": 4, "lengthFt": 481, "fairwayWidth": "narrow", "elevation": "uphill", "hazards": ["tight_gap"], "windProfile": "sheltered", "pinGuard": "trees", "recommendedLine": "anhyzer", "minimapImage": "minimaps/lakeview_pines_47291_h16.png" },
+        { "n": 17, "par": 3, "lengthFt": 387, "fairwayWidth": "medium", "elevation": "flat", "hazards": ["water_long"], "windProfile": "mixed", "pinGuard": "none", "recommendedLine": "S-curve", "minimapImage": "minimaps/lakeview_pines_47291_h17.png" },
+        { "n": 18, "par": 5, "lengthFt": 723, "fairwayWidth": "wide", "elevation": "downhill", "hazards": ["trees_right", "OB_path"], "windProfile": "open", "pinGuard": "light", "recommendedLine": "S-curve", "minimapImage": "minimaps/lakeview_pines_47291_h18.png" }
+      ]
+    }
+  ]
+}

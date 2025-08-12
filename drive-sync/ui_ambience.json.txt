@@ -1,0 +1,12 @@
+{
+  "ambient": {
+    "layers": [
+      { "id": "bgGradient", "type": "gradient", "colors": ["#0F1511","#0B120E"], "parallax": 0 },
+      { "id": "treeLineFar", "type": "parallaxSprite", "speed": 0.1, "opacity": 0.6 },
+      { "id": "treeLineNear", "type": "parallaxSprite", "speed": 0.25, "opacity": 0.85 },
+      { "id": "lightRays", "type": "shader", "intensity": 0.25, "drift": 0.02 },
+      { "id": "birdsOccasional", "type": "spriteEmitter", "frequencySec": [18, 45] }
+    ],
+    "perfBudget": { "maxDrawCalls": 180, "targetFPS": 60 }
+  }
+}

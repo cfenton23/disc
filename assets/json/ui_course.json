@@ -1,0 +1,22 @@
+﻿{
+    "render":  {
+                   "trees":  {
+                                 "densityPer1000px":  14
+                             },
+                   "depths":  {
+
+                              }
+               },
+    "forest":  {
+                   "size":  [
+                                0.08,
+                                0.16
+                            ]
+               },
+    "scale":  {
+                  "pixelsPerFoot":  0.56,
+                  "maxSpanPx":  680
+              },
+    "targetRadiusPx":  22,
+    "feetPerPx":  0.6
+}

@@ -1,0 +1,32 @@
+{
+  "tiers": {
+    "Amateur": { "baseRating": 820, "spreadPct": 5 },
+    "SemiPro": { "baseRating": 900, "spreadPct": 4 },
+    "Pro": { "baseRating": 960, "spreadPct": 3 },
+    "HallOfFame": { "baseRating": 1000, "spreadPct": 2 }
+  },
+  "generatedGroups": {
+    "Amateur_Week_Seed47291": [
+      { "name": "N. Griffin", "rating": 812 },
+      { "name": "Q. Butler", "rating": 799 },
+      { "name": "Riley \"Chains\" Carter", "rating": 825 },
+      { "name": "B. Reed", "rating": 793 },
+      { "name": "L. Patel", "rating": 802 },
+      { "name": "Alex \"Red Dead\" Morgan", "rating": 823 },
+      { "name": "Skye \"Clouds\" Stratus", "rating": 818 },
+      { "name": "Aria \"Scary-a\" Holmes", "rating": 817 },
+      { "name": "R. Foster", "rating": 804 },
+      { "name": "Will \"Wind-Reader\" Williams", "rating": 822 },
+      { "name": "F. Brooks", "rating": 810 },
+      { "name": "S. Kim", "rating": 794 },
+      { "name": "L. Brooks", "rating": 808 },
+      { "name": "L. Hayes", "rating": 816 },
+      { "name": "A. Gupta", "rating": 817 },
+      { "name": "H. Gibson", "rating": 816 },
+      { "name": "A. Bell", "rating": 814 },
+      { "name": "P. \"Mr. Fantastic\" Fox", "rating": 819 },
+      { "name": "M. Brooks", "rating": 792 },
+      { "name": "Noah \"Chains\" Lopez", "rating": 832 }
+    ]
+  }
+}

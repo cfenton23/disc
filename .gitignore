@@ -1,0 +1,12 @@
+﻿node_modules/
+dist/
+.vscode/
+.idea/
+.env
+dev/backups/
+dev/tmp/
+*.zip
+*.7z
+*.rar
+assets/minimaps/*.png
+assets/cache/

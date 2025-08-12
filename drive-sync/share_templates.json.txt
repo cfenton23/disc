@@ -1,0 +1,13 @@
+{
+  "postTournament": {
+    "size": { "w": 1200, "h": 630 },
+    "fields": ["courseName","seed","finalScore","place","top5","bag","avgWind","cornerstoneHole","buffs"],
+    "privacyToggles": ["playerName","seed","rivalNames"]
+  },
+  "postWeek": {
+    "size": { "w": 1200, "h": 630 },
+    "fields": ["week","tier","badges","creditsEarned","statChanges","newUnlocks","flavorLine"],
+    "privacyToggles": ["playerName"]
+  },
+  "squareAlt": { "w": 1080, "h": 1080 }
+}

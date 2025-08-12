@@ -1,0 +1,50 @@
+﻿{
+    "power":  {
+                  "overchargeHoldSec":  1.5,
+                  "powerCurveExp":  1.15,
+                  "overchargeBonus":  1.05
+              },
+    "flight":  {
+                   "segLenPx":  120,
+                   "minCarryFactor":  0.10,
+                   "maxCarryFactor":  1.20,
+                   "baseCarryFeetAtFull":  {
+                                               "driver":  350,
+                                               "mid":  260,
+                                               "putter":  190
+                                           },
+                   "accuracy":  {
+                                    "coneDeg":  {
+                                                    "driver":  6,
+                                                    "mid":  3.5,
+                                                    "putter":  2
+                                                },
+                                    "releaseNoiseAtFull":  0.5
+                                },
+                   "speedToCarryMult":  {
+                                            "min":  0.7,
+                                            "max":  1.3
+                                        },
+                   "glideToDragMult":  {
+                                           "min":  1.2,
+                                           "max":  0.85
+                                       },
+                   "turnMaxCurveDeg":  18,
+                   "fadeMaxCurveDeg":  22
+               },
+    "aim":  {
+                "speedDegPerSec":  90,
+                "rotationDegPerSec":  90,
+                "lineLengthPx":  280
+            },
+    "meter":  {
+                  "fillRatePerSec":  0.85,
+                  "drainRatePerSec":  0.65,
+                  "overchargeHoldSec":  1.5
+              },
+    "putt":  {
+                 "autoSinkFeet":  30,
+                 "autoSinkHeightFeet":  8,
+                 "autoSinkSideFeet":  6
+             }
+}

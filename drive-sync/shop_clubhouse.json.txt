@@ -1,0 +1,8 @@
+{
+  "refreshSchedule": "weekly",
+  "stock": [
+    { "id": "respec_token", "type": "token", "name": "Respec Token", "price": 1200, "rarity": "legendary", "limitPerWeek": 1, "description": "Refund all talent points (use outside tournaments)." },
+    { "id": "focus_chalk", "type": "item", "name": "Focus Chalk", "price": 120, "rarity": "common", "limitPerWeek": 2, "description": "Widen power sweet spot this tournament." },
+    { "id": "disc_unlock_iron_putter_mk1", "type": "disc_unlock", "discId": "iron_putter_mk1", "name": "Unlock: Iron Putter Mk.I", "price": 1400, "rarity": "rare", "limitPerWeek": 1, "description": "Add this disc to your library forever." }
+  ]
+}

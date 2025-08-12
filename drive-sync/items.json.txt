@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "id": "focus_chalk",
+      "name": "Focus Chalk",
+      "type": "consumable",
+      "scope": "tournament",
+      "effects": [{ "stat": "meterSweetSpot", "mode": "addPct", "value": 10 }],
+      "duration": { "holes": 18 },
+      "cooldownHoles": 0,
+      "description": "Widen the power sweet spot for the entire round."
+    },
+    {
+      "id": "stabilizer_band",
+      "name": "Stabilizer Band",
+      "type": "passive",
+      "slot": "accessory",
+      "effects": [{ "stat": "dispersion", "mode": "mulPct", "value": -8 }],
+      "description": "Smoother release = tighter dispersion."
+    },
+    {
+      "id": "respec_token",
+      "name": "Respec Token",
+      "type": "token",
+      "effects": [],
+      "description": "Refund all talent points (use outside tournaments)."
+    }
+  ]
+}

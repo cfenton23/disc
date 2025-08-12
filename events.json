@@ -1,0 +1,58 @@
+{
+  "events": [
+    {
+      "id": "gym_lower_body",
+      "label": "Gym – Lower Body",
+      "type": "training",
+      "energyCost": 2,
+      "effects": [{ "stat": "Strength", "delta": 1 }],
+      "flavor": "Squats, sled pushes, hill sprints.",
+      "locks": []
+    },
+    {
+      "id": "fieldwork_drives",
+      "label": "Fieldwork – Long Drives",
+      "type": "training",
+      "energyCost": 3,
+      "effects": [{ "stat": "Strength", "delta": 1 }, { "stat": "Focus", "delta": 1 }],
+      "flavor": "Open field reps, chasing max carry.",
+      "locks": []
+    },
+    {
+      "id": "film_shot_shaping",
+      "label": "Film Study – Shot Shaping",
+      "type": "study",
+      "energyCost": 1,
+      "effects": [{ "stat": "Vision", "delta": 1 }],
+      "flavor": "Angles, lines, and wind reads.",
+      "locks": []
+    },
+    {
+      "id": "woods_practice",
+      "label": "Woods Practice – Gaps & Recoveries",
+      "type": "training",
+      "energyCost": 2,
+      "effects": [{ "stat": "Flexibility", "delta": 1 }],
+      "flavor": "Tunnel shots and scramble drills.",
+      "locks": [{ "requiresTalent": "creativity_escape_artist" }]
+    },
+    {
+      "id": "beach_run",
+      "label": "Beach Run – Stamina Block",
+      "type": "conditioning",
+      "energyCost": 2,
+      "effects": [{ "stat": "Stamina", "delta": 1 }],
+      "flavor": "Soft sand, hard lungs.",
+      "locks": []
+    },
+    {
+      "id": "random_challenge_ctp",
+      "label": "Random Challenge – CTP with a Friend",
+      "type": "event",
+      "energyCost": 2,
+      "effects": [{ "stat": "Credits", "delta": 50 }, { "stat": "Focus", "delta": 1 }],
+      "flavor": "Loser buys post-round snacks.",
+      "locks": []
+    }
+  ]
+}

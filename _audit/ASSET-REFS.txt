@@ -1,0 +1,30 @@
+﻿node_modules\phaser\types\phaser.d.ts:67064: *     this.load.image('logo', 'images/phaserLogo.png');
+node_modules\phaser\types\phaser.d.ts:67099: * this.load.image('logo', 'images/AtariLogo.png');
+node_modules\phaser\types\phaser.d.ts:68547: * this.load.image("ball", "ball.png");
+node_modules\phaser\types\phaser.d.ts:68548: * this.load.image("tree", "level1/oaktree.png");
+node_modules\phaser\types\phaser.d.ts:68549: * this.load.image("boom", "http://server.com/explode.png");
+node_modules\phaser\types\phaser.d.ts:68691: * this.load.image("ball", "ball.png");
+node_modules\phaser\types\phaser.d.ts:68692: * this.load.image("tree", "level1/oaktree.png");
+node_modules\phaser\types\phaser.d.ts:68693: * this.load.image("boom", "http://server.com/explode.png");
+src\scenes\dev archive\TournamentScene - backup 08.10.2025.ts.ts:95: this.load.image('disc1', '/assets/discs/disc1.png');
+src\scenes\dev archive\TournamentScene - backup 08.10.2025.ts.ts:96: this.load.image('disc2', '/assets/discs/disc2.png');
+src\scenes\dev archive\TournamentScene - backup 08.10.2025.ts.ts:97: this.load.image('bag_icon', '/assets/ui/bag.png');
+src\scenes\mainMenuScene.ts:42: this.load.image("bg_trees", "assets/ui/bg_trees.png");
+src\scenes\mainMenuScene.ts:43: this.load.image("logo", "assets/ui/logo.png");
+src\scenes\mainMenuScene.ts:51: this.load.image("disc", "assets/ui/disc.png");
+node_modules\phaser\types\phaser.d.ts:67154: *     this.load.json('wavedata', 'files/AlienWaveData.json');
+node_modules\phaser\types\phaser.d.ts:67185: * this.load.json('wavedata', 'files/AlienWaveData.json');
+src\scenes\mainMenuScene.ts:55: this.load.json("discs", "assets/json/discs.json");
+src\scenes\TournamentScene.ts:70: this.load.json('courses', 'courses.json');                 // root
+src\scenes\TournamentScene.ts:71: this.load.json('ui_course', 'assets/json/ui_course.json'); // visuals
+src\scenes\TournamentScene.ts:72: this.load.json('tuning_throw', 'assets/json/tuning_throw.json'); // throw params
+src\scenes\TournamentScene.ts:73: this.load.json('discs', 'discs.json');                     // active discs/bag
+src\scenes\dev archive\TournamentScene - backup 08.10.2025.ts.ts:5: import discsData from '../../discs.json';
+src\scenes\dev archive\TournamentScene - backup 08.10.2025.ts.ts:6: import coursesData from '../../courses.json';
+src\scenes\dev archive\TournamentScene - backup 08.10.2025.ts.ts:7: import opponentsData from '../../opponents.json';
+src\scenes\mainMenuScene.ts:2: import uiButtons from "../../ui_buttons.json";
+src\scenes\mainMenuScene.ts:3: import uiLayout from "../../ui_layout.json";
+src\ui\buildBackground.ts:2: import uiAmbience from '../../ui_ambience.json';
+src\ui\buildBackground.ts:3: import uiLayout from '../../ui_layout.json';
+src\ui\makeUIButton.ts:2: import uiTheme from '../../ui_theme.json';
+src\ui\makeUIButton.ts:3: import uiMotion from '../../ui_motion.json';

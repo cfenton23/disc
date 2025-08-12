@@ -1,0 +1,16 @@
+{
+  "game": { "title": "Disc Life", "version": "0.1-graybox" },
+  "assists": { "defaultOn": true, "sweetSpotBonusPct": 10, "meterSpeedMul": 0.85, "aimSnap": true },
+  "throw": {
+    "baseSpeedToCarry": 32,
+    "strengthCarryPerPoint": 1.8,
+    "focusTimingRelief": 0.006,
+    "dispersionBase": 1.0,
+    "windTailGain": 0.015,
+    "windHeadLoss": 0.02,
+    "caps": { "windReductionMaxPct": 50, "dispersionReductionMaxPct": 60 }
+  },
+  "ai": { "leaderboardCount": 20, "sigmaBase": 0.85, "streakBonus": 0.04, "rivalBias": -0.25 },
+  "economy": { "winCredits": 300, "podiumCredits": 120, "activityCredits": 0 },
+  "dev": { "enabledDefault": false, "watermark": true, "separateSaveSlot": true }
+}

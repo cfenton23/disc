@@ -1,0 +1,32 @@
+{
+  "traits": [
+    {
+      "id": "cannon_arm",
+      "name": "Cannon Arm",
+      "category": "throw",
+      "description": "Extra carry on long drives.",
+      "effects": [{ "stat": "Carry", "mode": "addPctWhen", "value": 8, "when": "drive_over_300" }]
+    },
+    {
+      "id": "dead_eye",
+      "name": "Dead Eye",
+      "category": "putting",
+      "description": "Higher make rate on putts beyond 30 ft.",
+      "effects": [{ "stat": "putt_c2_accuracy", "mode": "addPct", "value": 8 }]
+    },
+    {
+      "id": "wind_whisperer",
+      "name": "Wind Whisperer",
+      "category": "situational",
+      "description": "Reduced effect from wind.",
+      "effects": [{ "stat": "windPenalty", "mode": "mulPct", "value": -20 }]
+    },
+    {
+      "id": "momentum_rider",
+      "name": "Momentum Rider",
+      "category": "mental",
+      "description": "Birdie streaks improve next tee shot.",
+      "effects": [{ "stat": "tee_accuracy_after_birdie", "mode": "addPct", "value": 5 }]
+    }
+  ]
+}

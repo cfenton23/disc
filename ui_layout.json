@@ -1,0 +1,19 @@
+{
+  "logo": {
+    "topPad": 5,
+    "maxWidthPct": 0.8,
+    "maxHeightPct": 0.8
+  },
+  "buttons": {
+    "anchorLabel": "Clubhouse",
+    "centerYPct": 0.56,
+    "rowGap": 58,
+    "tightenFactor": 0.0
+  },
+  "motion": {
+    "rotateDegFar": 1.0,
+    "rotateDegNear": 1.0,
+    "driftPxFar": 1,
+    "driftPxNear": 2
+  }
+}
