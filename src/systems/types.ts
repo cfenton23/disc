@@ -25,6 +25,7 @@ export interface CourseHole {
   recommendedLine?: string;
   minimapImage?: string;
   teePlacement?: { x:number, y:number };
+  controlPoints?: { x:number; y:number }[];
 }
 
 export interface CourseData {

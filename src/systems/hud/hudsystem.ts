@@ -13,6 +13,7 @@ type CourseHole = {
   length?: number | string;
   tee?: { x: number; y: number } | [number, number];
   pin?: { x: number; y: number } | [number, number];
+  controlPoints?: { x:number; y:number }[];
 };
 
 type Course = { name?: string; id?: string; holes: CourseHole[] };
@@ -88,7 +89,7 @@ export class HUDSystem {
 
   private safeHole(): CourseHole {
     const holes = this.course?.holes ?? [];
-    return holes[this.holeIndex] ?? { par: 3, lengthFt: 320, tee: [160, 160], pin: [1000, 520] };
+    return holes[this.holeIndex] ?? { par: 3, lengthFt: 320, tee: [160, 160], pin: [1000, 520], controlPoints: [] };
   }
 
   private resolveDistanceFt(hole: CourseHole): number | null {

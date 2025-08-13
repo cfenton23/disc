@@ -18,6 +18,7 @@ export type CourseHole = {
   teePlacement?: { x: number; y: number }; // 0..1
   windProfile?: 'sheltered' | 'mixed' | 'open';
   hazards?: string[];
+  controlPoints?: { x: number; y: number }[];
 };
 
 export type PlayerRow = {

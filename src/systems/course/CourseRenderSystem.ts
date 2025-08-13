@@ -1,5 +1,6 @@
 ﻿import Phaser from "phaser";
 import { EventBus } from "../core/EventBus";
+import { buildFairwayPath } from "./fairway";
 
 type CourseHole = {
   recommendedLine?: "straight"|"hyzer"|"anhyzer"|"S-curve"|string;
@@ -11,6 +12,7 @@ type CourseHole = {
   elevation?: "uphill"|"downhill"|"flat"|string;
   fairwayWidth?: number|"narrow"|"medium"|"wide";
   hazards?: string[];
+  controlPoints?: { x:number; y:number }[];
 };
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 
@@ -103,30 +105,7 @@ export class CourseRenderSystem {
     const col = Phaser.Display.Color.HexStringToColor(fairwayHex).color;
     const edge = Phaser.Display.Color.HexStringToColor(edgeHex).color;
     const style = String(hole.recommendedLine || "straight");
-    const segs = 22;
-    const pts: Phaser.Math.Vector2[] = [];
-    const base = pin.clone().subtract(tee);
-    const len = base.length();
-    const dir = base.clone().normalize();
-    const perp = new Phaser.Math.Vector2(-dir.y, dir.x);
-    let amp = widthPx * 0.55;
-    if (style === "S-curve") { amp = widthPx * 0.35; }
-    for (let i = 0; i <= segs; i++) {
-      const t = i / segs;
-      let off = 0;
-      if (style === "hyzer") {
-        off = -Math.sin(t * Math.PI) * amp;
-      } else if (style === "anhyzer") {
-        off = Math.sin(t * Math.PI) * amp;
-      } else if (style === "S-curve") {
-        off = Math.sin(t * Math.PI * 2) * (amp * 0.6);
-      }
-      const p = new Phaser.Math.Vector2(
-        tee.x + dir.x * (len * t) + perp.x * off,
-        tee.y + dir.y * (len * t) + perp.y * off
-      );
-      pts.push(p);
-    }
+    const pts = buildFairwayPath(tee, pin, widthPx, style, hole.controlPoints);
     const half = widthPx * 0.5;
     const left: Phaser.Math.Vector2[] = [];
     const right: Phaser.Math.Vector2[] = [];
@@ -249,7 +228,7 @@ private pointToSegmentDistance(p: Phaser.Math.Vector2, a: Phaser.Math.Vector2, b
 }
 
   private clear(){ this.gTerrain?.clear(); this.gFairway?.clear(); this.hazards?.removeAll(true); this.markers?.removeAll(true); this.decor?.removeAll(true); }
-  private safeHole():CourseHole{ const holes=this.course?.holes??[]; return holes[this.holeIndex] ?? {par:3,lengthFt:320,tee:[160,160],pin:[1000,520]}; }
+  private safeHole():CourseHole{ const holes=this.course?.holes??[]; return holes[this.holeIndex] ?? {par:3,lengthFt:320,tee:[160,160],pin:[1000,520],controlPoints:[]}; }
   private pt(p:any):{x:number;y:number}|null{ if(!p) return null; if(Array.isArray(p)&&p.length>=2) return {x:Number(p[0])||0,y:Number(p[1])||0}; if(typeof p==="object"&&p.x!=null&&p.y!=null) return {x:Number(p.x)||0,y:Number(p.y)||0}; return null; }
 
   public isAtTarget(p: Phaser.Math.Vector2, radiusPx?: number): boolean {
