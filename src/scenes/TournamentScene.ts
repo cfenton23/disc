@@ -30,6 +30,7 @@ type CourseHole = {
   elevation?: 'uphill'|'downhill'|'flat'|string;
   fairwayWidth?: number|'narrow'|'medium'|'wide';
   hazards?: string[];
+  controlPoints?: { x:number; y:number }[];
 };
 type Course = { id?: string; name?: string; holes: CourseHole[] };
 

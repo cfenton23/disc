@@ -6,6 +6,7 @@ type CourseHole = {
   tee?: {x:number;y:number}|[number,number];
   pin?: {x:number;y:number}|[number,number];
   elevation?: string; fairwayWidth?: any; hazards?: string[];
+  controlPoints?: { x:number; y:number }[];
 };
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 
@@ -313,7 +314,7 @@ export class ThrowSystem {
 
   // ---------- Helpers ----------
   private safeHole(): CourseHole {
-    return this.course?.holes?.[this.holeIndex] ?? { par:3, lengthFt:320, tee:[160,160], pin:[1000,520], elevation:"flat" };
+    return this.course?.holes?.[this.holeIndex] ?? { par:3, lengthFt:320, tee:[160,160], pin:[1000,520], elevation:"flat", controlPoints:[] };
   }
   private v(xy: {x:number;y:number}|[number,number]): Phaser.Math.Vector2 {
     return Array.isArray(xy) ? new Phaser.Math.Vector2(xy[0], xy[1]) : new Phaser.Math.Vector2(xy.x, xy.y);
