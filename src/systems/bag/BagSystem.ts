@@ -1,21 +1,22 @@
 ﻿import Phaser from "phaser";
 import { EventBus } from "../core/EventBus";
+import type { DiscCatalog } from "../../types/config";
 
-type Disc = { id:string; slot?: "driver"|"midrange"|"putter"; name?:string; speed?:number; glide?:number; turn?:number; fade?:number };
+import type { DiscSpec } from "../../types/models";
 
 export class BagSystem {
   private scene: Phaser.Scene;
   private bus: EventBus;
-  private discs: Disc[] = [];
-  private active?: Disc;
+  private discs: DiscSpec[] = [];
+  private active?: DiscSpec;
   private key1?: Phaser.Input.Keyboard.Key;
   private key2?: Phaser.Input.Keyboard.Key;
   private key3?: Phaser.Input.Keyboard.Key;
 
   constructor(scene: Phaser.Scene, bus: EventBus) { this.scene = scene; this.bus = bus; }
 
-  init(discsJson: any) {
-    this.discs = Array.isArray(discsJson?.discs) ? discsJson.discs : (Array.isArray(discsJson) ? discsJson : []);
+  init(discsJson: DiscCatalog) {
+    this.discs = Array.isArray(discsJson?.discs) ? discsJson.discs : [];
     // default active = first driver, else mid, else putter, else first
     this.active = this.findBySlot("driver") || this.findBySlot("midrange") || this.findBySlot("putter") || this.discs[0];
     this.wireKeys();

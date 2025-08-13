@@ -18,5 +18,6 @@
       "@/*": ["*"]
     }
   },
-  "include": ["src/**/*", "vite.config.ts", "vite.config.js"]
+  "include": ["src/**/*", "vite.config.ts", "vite.config.js"],
+  "exclude": ["src/scenes/dev archive/**/*"]
 }

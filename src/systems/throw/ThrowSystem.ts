@@ -1,5 +1,6 @@
 ﻿import Phaser from "phaser";
 import { EventBus } from "../core/EventBus";
+import type { UICourseConfig, ThrowTuning, DiscCatalog } from "../../types/config";
 
 type CourseHole = {
   par?: number; lengthFt?: number|string;
@@ -10,8 +11,12 @@ type CourseHole = {
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 
 type InitData = {
-  course: Course; holeIndex: number; uiCourse: any; tuning: any; discs: any;
-  depths: { play:number; ui:number };
+  course: Course;
+  holeIndex: number;
+  uiCourse: UICourseConfig;
+  tuning: ThrowTuning;
+  discs: DiscCatalog;
+  depths: { play: number; ui: number };
 };
 
 export class ThrowSystem {
@@ -30,9 +35,9 @@ export class ThrowSystem {
 
   private course!: Course;
   private holeIndex!: number;
-  private uiCourse!: any;
-  private tuning!: any;
-  private discs!: any;
+  private uiCourse!: UICourseConfig;
+  private tuning!: ThrowTuning;
+  private discs!: DiscCatalog;
 
   // keys
   private keyA?: Phaser.Input.Keyboard.Key;
@@ -76,18 +81,17 @@ export class ThrowSystem {
   private clickTargetEnabled = true;
 
   constructor(scene: Phaser.Scene, bus: EventBus) {
-    try { this.scene.events.on("update", this.__uiTick, this); } catch(e) {}
-
     this.scene = scene;
     this.bus = bus;
+    try { this.scene.events.on("update", this.__uiTick, this); } catch(e) {}
   }
 
   init(data: InitData) {
     this.course    = data.course;
     this.holeIndex = data.holeIndex;
-    this.uiCourse  = data.uiCourse || {};
-    this.tuning    = data.tuning   || {};
-    this.discs     = data.discs    || {};
+    this.uiCourse  = data.uiCourse;
+    this.tuning    = data.tuning;
+    this.discs     = data.discs;
 
     // allow JSON to tweak
     this.overchargeHoldSec   = this.tuning?.power?.overchargeHoldSec ?? this.overchargeHoldSec;
@@ -222,13 +226,7 @@ export class ThrowSystem {
   getMeter01(): number { return this.meterVal; }
   isOvercharging(): boolean { return this.overchargeActive; }
 
-  // ShotHud expects both:
-  estimateCarryFeet(v01: number): number {
-    const p = Number.isFinite(v01 as any) ? Phaser.Math.Clamp(v01, 0, 1) : 0;
-    const px = Number(this.computeCarryPx(p, false)) || 0;
-    return Math.max(0, this.pxToFeet(px * 0.6));   // conservative readout
-  }
-  getActiveDisc(): any {
+    getActiveDisc(): any {
     const d = this.getDisc();
     const fallback = (this.slot === 1 ? "driver" : this.slot === 2 ? "mid" : "putter");
     const s = (typeof (d as any).slot === "string" ? (d as any).slot : fallback);

@@ -1,5 +1,7 @@
 ﻿import Phaser from 'phaser';
-import { WATER_WAVE_AMP, WATER_WAVE_FREQ } from './config';
+
+const WATER_WAVE_AMP = 4;
+const WATER_WAVE_FREQ = 0.02;
 
 // Simple water strip with a safe polyline ripple (no quadraticCurveTo)
 export function drawWater(scene: Phaser.Scene, y: number, width: number): Phaser.GameObjects.Graphics {

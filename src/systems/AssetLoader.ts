@@ -67,7 +67,7 @@ export class AssetLoader {
       }
 
       // If nothing queued, resolve immediately.
-      if (this.scene.load.totalToLoad() === 0) {
+      if (this.scene.load.totalToLoad === 0) {
         resolve();
         return;
       }
@@ -122,5 +122,13 @@ export class AssetLoader {
   }
 
   /** Get a list of missing asset keys (for logging/exporting a checklist). */
-  listMi
+  listMissing(): string[] {
+    return Array.from(this.failed);
+  }
+
+  /** Simple label helper for generated placeholders. */
+  private placeholderLabelFor(kind: AssetKind): string {
+    return kind.toUpperCase();
+  }
+}
 

@@ -12,7 +12,7 @@ export class PlaceholderFactory {
     if (scene.textures.exists(key)) return;
 
     // Create a canvas texture
-    const canvas = scene.textures.createCanvas(key, width, height);
+    const canvas = scene.textures.createCanvas(key, width, height)!;
     const ctx = canvas.getContext();
 
     // Background

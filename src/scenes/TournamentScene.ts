@@ -21,6 +21,7 @@ import { CourseRenderSystem } from '../systems/course/CourseRenderSystem';
 import { ThrowSystem } from '../systems/throw/ThrowSystem';
 import { ShotHud } from '../systems/hud/ShotHud';
 import { BagSystem } from '../systems/bag/BagSystem';
+import type { UICourseConfig, ThrowTuning, DiscCatalog } from '../types/config';
 
 type CourseHole = {
   par?: number;
@@ -47,9 +48,9 @@ export default class TournamentScene extends Phaser.Scene {
   private course!: Course;
   private holeIndex = 0;
 
-  private uiCourse: any = {};
-  private tuning: any = {};
-  private discsJson: any = {};
+  private uiCourse: UICourseConfig = {};
+  private tuning: ThrowTuning = {};
+  private discsJson: DiscCatalog = {};
 
   private courseRender!: CourseRenderSystem;
   private bag!: BagSystem;

@@ -1,5 +1,6 @@
 ﻿import Phaser from "phaser";
 import { EventBus } from "../core/EventBus";
+import type { UICourseConfig } from "../../types/config";
 
 type CourseHole = {
   recommendedLine?: "straight"|"hyzer"|"anhyzer"|"S-curve"|string;
@@ -14,11 +15,16 @@ type CourseHole = {
 };
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 
-type InitData = { course:Course; holeIndex:number; uiCourse:any; depths:{ terrain:number; fairway:number; markers:number; hud:number } };
+type InitData = {
+  course: Course;
+  holeIndex: number;
+  uiCourse: UICourseConfig;
+  depths: { terrain: number; fairway: number; markers: number; hud: number };
+};
 
 export class CourseRenderSystem {
   private scene:Phaser.Scene; private bus:EventBus;
-  private course!:Course; private holeIndex!:number; private ui:any={};
+  private course!:Course; private holeIndex!:number; private ui:UICourseConfig = {};
 
   private gTerrain!:Phaser.GameObjects.Graphics;
   private gFairway!:Phaser.GameObjects.Graphics;
@@ -35,7 +41,7 @@ export class CourseRenderSystem {
   constructor(scene:Phaser.Scene,bus:EventBus){ this.scene=scene; this.bus=bus; }
 
   init(data:InitData){
-    this.course=data.course; this.holeIndex=data.holeIndex; this.ui=data.uiCourse||{};
+    this.course=data.course; this.holeIndex=data.holeIndex; this.ui=data.uiCourse;
     this.gTerrain=this.scene.add.graphics().setDepth(data.depths.terrain);
     this.gFairway=this.scene.add.graphics().setDepth(data.depths.fairway);
     this.hazards=this.scene.add.container(0,0).setDepth(data.depths.fairway+1);
