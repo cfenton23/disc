@@ -11,6 +11,7 @@ type CourseHole = {
   elevation?: "uphill"|"downhill"|"flat"|string;
   fairwayWidth?: number|"narrow"|"medium"|"wide";
   hazards?: string[];
+  widthProfile?: number[];
 };
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 
@@ -127,9 +128,16 @@ export class CourseRenderSystem {
       );
       pts.push(p);
     }
-    const half = widthPx * 0.5;
+    const profile: number[] = Array.isArray(hole.widthProfile) ? hole.widthProfile : [];
+    const { left, right } = this.buildFairwayPath(pts, widthPx, profile);
+    this.renderFairwayShape(left, right, col, edge, widthPx, hole, pts);
+    (this as any)._fairwayPath = pts;
+  }
+
+  private buildFairwayPath(pts: Phaser.Math.Vector2[], widthPx: number, profile: number[]) {
     const left: Phaser.Math.Vector2[] = [];
     const right: Phaser.Math.Vector2[] = [];
+    const last = Math.max(profile.length - 1, 0);
     for (let i = 0; i < pts.length; i++) {
       let ia = i - 1; if (ia < 0) { ia = 0; }
       let ib = i + 1; if (ib > pts.length - 1) { ib = pts.length - 1; }
@@ -137,9 +145,25 @@ export class CourseRenderSystem {
       const b = pts[ib];
       const tangent = b.clone().subtract(a).normalize();
       const normal = new Phaser.Math.Vector2(-tangent.y, tangent.x);
+      let mult = 1;
+      if (profile.length > 0) {
+        const t = i / (pts.length - 1);
+        const f = t * last;
+        const i0 = Math.floor(f);
+        const i1 = Math.min(i0 + 1, last);
+        const frac = f - i0;
+        const m0 = profile[i0] ?? 1;
+        const m1 = profile[i1] ?? m0;
+        mult = m0 + (m1 - m0) * frac;
+      }
+      const half = widthPx * 0.5 * mult;
       left.push(pts[i].clone().add(normal.clone().scale(-half)));
       right.push(pts[i].clone().add(normal.clone().scale(half)));
     }
+    return { left, right };
+  }
+
+  private renderFairwayShape(left: Phaser.Math.Vector2[], right: Phaser.Math.Vector2[], col: number, edge: number, widthPx: number, hole: CourseHole, pts: Phaser.Math.Vector2[]) {
     this.gFairway.clear();
     this.gFairway.fillStyle(col, 0.78);
     this.gFairway.beginPath();
@@ -161,7 +185,6 @@ export class CourseRenderSystem {
         this.gFairway.fillCircle(p.x, p.y, widthPx * 0.45 * (1 - i * 0.08));
       }
     }
-    (this as any)._fairwayPath = pts;
   }
   // PATCH curved-fairway END
 
