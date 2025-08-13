@@ -10,8 +10,9 @@ type CourseHole = {
   pin?: { x:number; y:number } | [number,number];
   elevation?: "uphill"|"downhill"|"flat"|string;
   fairwayWidth?: number|"narrow"|"medium"|"wide";
-  hazards?: string[];
+  hazards?: Hazard[];
 };
+type Hazard = string | { type: string; at: number };
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 
 type InitData = { course:Course; holeIndex:number; uiCourse:any; depths:{ terrain:number; fairway:number; markers:number; hud:number } };
@@ -165,7 +166,9 @@ export class CourseRenderSystem {
   }
   // PATCH curved-fairway END
 
-  private drawHazard(kind:string,tee:Phaser.Math.Vector2,pin:Phaser.Math.Vector2,fw:number){    // 0.0.6: hazards that depend on fairway path
+  private drawHazard(hz:Hazard,tee:Phaser.Math.Vector2,pin:Phaser.Math.Vector2,fw:number){    // 0.0.6: hazards that depend on fairway path
+    const kind = typeof hz === 'string' ? hz : hz.type;
+    const at = typeof hz === 'string' ? undefined : hz.at;
     if (kind === "tight_gap") {
       const pts = (this as any)._fairwayPath || [];
       this.drawTightGap(pts, fw);
@@ -201,14 +204,15 @@ export class CourseRenderSystem {
     }
     if(kind==="water_short"||kind==="water_long"){
       const col=Phaser.Display.Color.HexStringToColor(hzCfg?.water?.color??"#4db2ff").color;
-      const ahead= kind==="water_long" ? 0.75 : 0.25; const width=(hzCfg?.water?.width ?? 84)+fw*0.2;
-      const mid=new Phaser.Math.Vector2(tee.x+dir.x*(length*ahead), tee.y+dir.y*(length*ahead));
+      const ahead= at !== undefined ? at : (kind==="water_long" ? 0.75 : 0.25); const width=(hzCfg?.water?.width ?? 84)+fw*0.2;
+      const mid=tee.clone().add(dir.clone().scale(length*ahead));
       const left=mid.clone().add(perp.clone().scale(width)); const right=mid.clone().add(perp.clone().scale(-width));
       const g=this.scene.add.graphics().setAlpha(0.6); g.fillStyle(col,0.8); g.fillTriangle(mid.x,mid.y,left.x,left.y,right.x,right.y); this.hazards.add(g); return;
     }
     if(kind==="bunker_mound"){
       const col=Phaser.Display.Color.HexStringToColor(hzCfg?.bunker?.color??"#dab27a").color;
-      const near=new Phaser.Math.Vector2(tee.x+dir.x*(length*0.55), tee.y+dir.y*(length*0.55));
+      const pos = at !== undefined ? at : 0.55;
+      const near=tee.clone().add(dir.clone().scale(length*pos));
       const g=this.scene.add.graphics().setAlpha(0.85); g.fillStyle(col,1).fillEllipse(near.x,near.y, fw*0.9, fw*0.5); this.hazards.add(g); return;
     }
   }

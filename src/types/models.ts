@@ -17,8 +17,10 @@ export type CourseHole = {
   minimapImage?: string;
   teePlacement?: { x: number; y: number }; // 0..1
   windProfile?: 'sheltered' | 'mixed' | 'open';
-  hazards?: string[];
+  hazards?: Hazard[];
 };
+
+export type Hazard = string | { type: string; at: number };
 
 export type PlayerRow = {
   id: string;

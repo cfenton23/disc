@@ -29,8 +29,9 @@ type CourseHole = {
   pin?: { x:number; y:number } | [number, number];
   elevation?: 'uphill'|'downhill'|'flat'|string;
   fairwayWidth?: number|'narrow'|'medium'|'wide';
-  hazards?: string[];
+  hazards?: Hazard[];
 };
+type Hazard = string | { type: string; at: number };
 type Course = { id?: string; name?: string; holes: CourseHole[] };
 
 const DEPTHS = {
@@ -100,8 +101,8 @@ export default class TournamentScene extends Phaser.Scene {
     this.course = Array.isArray(allCourses) && allCourses[0]
       ? allCourses[0]
       : { name: 'Demo Links', holes: [
-          { par:3, lengthFt:320, tee:[160,160], pin:[1000,520], elevation:'flat', fairwayWidth:'medium', hazards:['trees_both'] },
-          { par:4, lengthFt:420, tee:[160,210], pin:[1100,560], elevation:'flat', fairwayWidth:'medium', hazards:['OB_path','water_long'] }
+          { par:3, lengthFt:320, tee:[160,160], pin:[1000,520], elevation:'flat', fairwayWidth:'medium', hazards:[{type:'trees_both', at:0.5}] },
+          { par:4, lengthFt:420, tee:[160,210], pin:[1100,560], elevation:'flat', fairwayWidth:'medium', hazards:[{type:'OB_path', at:0.5}, {type:'water_long', at:0.75}] }
         ]};
 
     // Event bus

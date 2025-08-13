@@ -35,8 +35,8 @@ export function buildPlayfield(scene: Phaser.Scene, hole: CourseHole|undefined) 
     }
   });
 
-  // Hazards â€“ water hint if present
-  if ((hole?.hazards||[]).some(h=>h.startsWith('water'))) {
+  // Hazards – water hint if present
+  if ((hole?.hazards||[]).some(h=> (typeof h === 'string' ? h : h.type).startsWith('water'))) {
     const water = scene.add.graphics();
     water.fillStyle(0x1a4e4e, 0.45).fillRect(0, H*0.64, W, H*0.05);
     root.add(water);

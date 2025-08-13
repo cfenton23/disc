@@ -19,13 +19,15 @@ export interface CourseHole {
   lengthFt: number;
   fairwayWidth?: 'narrow'|'medium'|'wide';
   elevation?: 'downhill'|'flat'|'uphill';
-  hazards?: string[];
+  hazards?: Hazard[];
   windProfile?: 'open'|'mixed'|'sheltered';
   pinGuard?: 'none'|'light'|'trees'|string;
   recommendedLine?: string;
   minimapImage?: string;
   teePlacement?: { x:number, y:number };
 }
+
+export type Hazard = string | { type: string; at: number };
 
 export interface CourseData {
   id: string;

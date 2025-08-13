@@ -5,7 +5,7 @@ type CourseHole = {
   par?: number; lengthFt?: number|string;
   tee?: {x:number;y:number}|[number,number];
   pin?: {x:number;y:number}|[number,number];
-  elevation?: string; fairwayWidth?: any; hazards?: string[];
+  elevation?: string; fairwayWidth?: any; hazards?: (string|{type:string; at:number})[];
 };
 type Course = { id?:string; name?:string; holes: CourseHole[] };
 

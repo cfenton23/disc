@@ -36,7 +36,7 @@ function holeDifficulty(h: CourseHole): number {
   if (h.elevation === 'downhill') d -= 0.05;
   if (h.fairwayWidth === 'narrow') d += 0.06;
   if (h.fairwayWidth === 'wide') d -= 0.04;
-  if ((h.hazards||[]).some(z=>z.includes('water'))) d += 0.05;
+  if ((h.hazards||[]).some(z=> (typeof z === 'string' ? z : z.type).includes('water'))) d += 0.05;
   if (h.pinGuard && h.pinGuard !== 'none') d += 0.04;
   return Math.max(0.85, Math.min(1.2, d));
 }
