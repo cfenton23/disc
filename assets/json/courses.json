@@ -19,7 +19,13 @@
           "pinGuard": "none",
           "recommendedLine": "anhyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h01.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 2,
@@ -32,7 +38,13 @@
           "pinGuard": "none",
           "recommendedLine": "anhyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h02.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 3,
@@ -47,7 +59,13 @@
           "pinGuard": "none",
           "recommendedLine": "anhyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h03.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 4,
@@ -62,7 +80,13 @@
           "pinGuard": "trees",
           "recommendedLine": "hyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h04.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 5,
@@ -77,7 +101,13 @@
           "pinGuard": "none",
           "recommendedLine": "straight",
           "minimapImage": "minimaps/lakeview_pines_47291_h05.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 6,
@@ -92,7 +122,13 @@
           "pinGuard": "light",
           "recommendedLine": "S-curve",
           "minimapImage": "minimaps/lakeview_pines_47291_h06.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 7,
@@ -107,7 +143,13 @@
           "pinGuard": "none",
           "recommendedLine": "hyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h07.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 8,
@@ -122,7 +164,13 @@
           "pinGuard": "light",
           "recommendedLine": "straight",
           "minimapImage": "minimaps/lakeview_pines_47291_h08.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 9,
@@ -137,7 +185,13 @@
           "pinGuard": "none",
           "recommendedLine": "S-curve",
           "minimapImage": "minimaps/lakeview_pines_47291_h09.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 10,
@@ -152,7 +206,13 @@
           "pinGuard": "trees",
           "recommendedLine": "anhyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h10.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 11,
@@ -167,7 +227,13 @@
           "pinGuard": "light",
           "recommendedLine": "straight",
           "minimapImage": "minimaps/lakeview_pines_47291_h11.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 12,
@@ -182,7 +248,13 @@
           "pinGuard": "none",
           "recommendedLine": "hyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h12.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 13,
@@ -197,7 +269,13 @@
           "pinGuard": "trees",
           "recommendedLine": "hyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h13.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 14,
@@ -212,7 +290,13 @@
           "pinGuard": "light",
           "recommendedLine": "S-curve",
           "minimapImage": "minimaps/lakeview_pines_47291_h14.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 15,
@@ -227,7 +311,13 @@
           "pinGuard": "none",
           "recommendedLine": "straight",
           "minimapImage": "minimaps/lakeview_pines_47291_h15.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 16,
@@ -242,7 +332,13 @@
           "pinGuard": "trees",
           "recommendedLine": "anhyzer",
           "minimapImage": "minimaps/lakeview_pines_47291_h16.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 17,
@@ -257,7 +353,13 @@
           "pinGuard": "none",
           "recommendedLine": "S-curve",
           "minimapImage": "minimaps/lakeview_pines_47291_h17.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         },
         {
           "n": 18,
@@ -273,7 +375,13 @@
           "pinGuard": "light",
           "recommendedLine": "S-curve",
           "minimapImage": "minimaps/lakeview_pines_47291_h18.png",
-          "controlPoints": []
+          "controlPoints": [],
+          "widthProfile": [
+            1,
+            1.2,
+            0.9,
+            1
+          ]
         }
       ]
     }
