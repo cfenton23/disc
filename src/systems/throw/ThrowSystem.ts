@@ -222,12 +222,7 @@ export class ThrowSystem {
   getMeter01(): number { return this.meterVal; }
   isOvercharging(): boolean { return this.overchargeActive; }
 
-  // ShotHud expects both:
-  estimateCarryFeet(v01: number): number {
-    const p = Number.isFinite(v01 as any) ? Phaser.Math.Clamp(v01, 0, 1) : 0;
-    const px = Number(this.computeCarryPx(p, false)) || 0;
-    return Math.max(0, this.pxToFeet(px * 0.6));   // conservative readout
-  }
+  // ShotHud expects:
   getActiveDisc(): any {
     const d = this.getDisc();
     const fallback = (this.slot === 1 ? "driver" : this.slot === 2 ? "mid" : "putter");
@@ -347,25 +342,26 @@ export class ThrowSystem {
     const id = this.slot === 1 ? "dev_driver" : this.slot === 2 ? "dev_mid" : "dev_putt";
     return list.find(d => d.id === id) || { id, name:id, speed:7, glide:4, turn:-1, fade:2, slot:"driver" };
   }
-public estimateCarryFeet(meter01?: number){
-  try{
-    const t:any = (this as any).tuning?.flight ?? {};
-    const d:any = this.getActiveDisc?.() ?? { speed:5, glide:4, slot:"mid" };
-    const m = Phaser.Math.Clamp(meter01 ?? this.getMeter01?.() ?? 0, 0, 1);
 
-    const speed01 = this.map01(d.speed ?? 5, 1, 14);
-    const carryMult = this.lerp(t.speedToCarryMult?.min ?? 0.7, t.speedToCarryMult?.max ?? 1.3, speed01);
+  public estimateCarryFeet(meter01?: number): number {
+    try {
+      const t: any = (this as any).tuning?.flight ?? {};
+      const d: any = this.getActiveDisc?.() ?? { speed: 5, glide: 4, slot: "mid" };
+      const m = Phaser.Math.Clamp(meter01 ?? this.getMeter01?.() ?? 0, 0, 1);
 
-    const baseBySlot = t.baseCarryFeetAtFull ?? { driver:350, mid:260, putter:190 };
-    const slot = (d.slot ?? "mid").toLowerCase();
-    const slotBase = baseBySlot[slot] ?? 260;
+      const speed01 = this.map01(d.speed ?? 5, 1, 14);
+      const carryMult = this.lerp(t.speedToCarryMult?.min ?? 0.7, t.speedToCarryMult?.max ?? 1.3, speed01);
 
-    const glide01 = this.map01(d.glide ?? 4, 1, 7);
-    const dragMult = this.lerp(t.glideToDragMult?.min ?? 1.2, t.glideToDragMult?.max ?? 0.85, glide01);
+      const baseBySlot = t.baseCarryFeetAtFull ?? { driver: 350, mid: 260, putter: 190 };
+      const slot = (d.slot ?? "mid").toLowerCase();
+      const slotBase = baseBySlot[slot] ?? 260;
 
-    return (slotBase * carryMult * m) * (1 / dragMult);
-  } catch(e){ return 0; }
-}
+      const glide01 = this.map01(d.glide ?? 4, 1, 7);
+      const dragMult = this.lerp(t.glideToDragMult?.min ?? 1.2, t.glideToDragMult?.max ?? 0.85, glide01);
+
+      return (slotBase * carryMult * m) * (1 / dragMult);
+    } catch (e) { return 0; }
+  }
   private __initPowerBar(){
     const ui = (this as any).uiDepth ?? 2000;
     if (!this.__pbBG) this.__pbBG = this.scene.add.rectangle(24,78,220,12,0x000000,0.35).setOrigin(0,0).setDepth(ui);
