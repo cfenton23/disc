@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +20,7 @@
   "devDependencies": {
     "@types/node": "^24.2.1",
     "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^1.6.0"
   }
 }
