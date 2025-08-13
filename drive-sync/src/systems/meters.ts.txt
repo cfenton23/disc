@@ -88,7 +88,7 @@ export function createMeters(scene: Phaser.Scene): Meters {
     }
   }
 
-  // Power animator (Scene.update should call meters.step(dt) but weâ€™ll self-update)
+  // Power animator (we'll self-update by subscribing to scene.events.on('update'))
   scene.events.on('update', (_t, dt:number)=>{
     if (powerActive) {
       power += POWER_CHARGE_RATE * dt * powerDir;
