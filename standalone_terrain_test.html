@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling Hills Terrain</title>
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <div>WASD: Move around</div>
+        <div>Position: <span id="position">0, 0, 0</span></div>
+        <div>Status: <span id="status">Loading...</span></div>
+    </div>
+
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script>
+        // Simple global variables
+        let scene, camera, renderer;
+        let terrain;
+        let player = {
+            position: { x: 0, y: 10, z: 0 },
+            rotation: { yaw: 0, pitch: 0 },
+            speed: 20
+        };
+        let keys = {};
+
+        function init() {
+            console.log('Starting rolling hills terrain...');
+            document.getElementById('status').textContent = 'Initializing...';
+            
+            // Create scene
+            scene = new THREE.Scene();
+            
+            // Load and set sky texture as background
+            const textureLoader = new THREE.TextureLoader();
+            
+            // NOTE: Replace this URL with your actual sky texture path when using locally:
+            // const skyTexture = textureLoader.load('/assets/ui/sky.png');
+            // For now, using a procedural sky
+            const skyTexture = createSkyTexture();
+            scene.background = skyTexture;
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 10, 0);
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+            
+            // Add simple lighting
+            const light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(10, 10, 10);
+            scene.add(light);
+            
+            // CREATE SIMPLE RED CUBE (keep for reference)
+            const cubeGeometry = new THREE.BoxGeometry(5, 5, 5);
+            const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+            const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.position.set(20, 5, -20);
+            scene.add(cube);
+            console.log('Added red test cube');
+            
+            // CREATE ROLLING HILLS TERRAIN
+            createRollingHills();
+            
+            // Setup controls
+            setupControls();
+            
+            // Start animation
+            animate();
+            
+            document.getElementById('status').textContent = 'Running';
+            console.log('Initialization complete');
+        }
+
+        function createRollingHills() {
+            // Create a plane geometry with more subdivisions for height variation
+            const terrainSize = 200;
+            const terrainResolution = 50; // 50x50 grid of vertices
+            
+            const planeGeometry = new THREE.PlaneGeometry(
+                terrainSize, 
+                terrainSize, 
+                terrainResolution - 1, 
+                terrainResolution - 1
+            );
+            
+            // Get the vertex positions
+            const vertices = planeGeometry.attributes.position.array;
+            
+            // Add gentle rolling hills using simple sine waves
+            for (let i = 0; i < vertices.length; i += 3) {
+                const x = vertices[i];
+                const z = vertices[i + 1];
+                
+                // Create gentle rolling hills with multiple sine waves
+                const height1 = Math.sin(x * 0.02) * 8;
+                const height2 = Math.cos(z * 0.015) * 6;
+                const height3 = Math.sin((x + z) * 0.01) * 4;
+                
+                // Combine the waves for more natural looking terrain
+                vertices[i + 2] = height1 + height2 + height3;
+            }
+            
+            // Update the geometry
+            planeGeometry.attributes.position.needsUpdate = true;
+            planeGeometry.computeVertexNormals(); // For proper lighting
+            
+            // Load grass texture
+            const textureLoader = new THREE.TextureLoader();
+            
+            // NOTE: Replace these URLs with your actual file paths when using locally:
+            // const grassTexture = textureLoader.load('/assets/ui/grass.png');
+            // For now, using a placeholder pattern
+            const grassTexture = createGrassTexture();
+            grassTexture.wrapS = THREE.RepeatWrapping;
+            grassTexture.wrapT = THREE.RepeatWrapping;
+            grassTexture.repeat.set(20, 20); // Repeat texture across terrain
+            
+            // Create material with grass texture
+            const planeMaterial = new THREE.MeshLambertMaterial({ 
+                map: grassTexture,
+                side: THREE.DoubleSide
+            });
+            
+            terrain = new THREE.Mesh(planeGeometry, planeMaterial);
+            terrain.rotation.x = -Math.PI / 2; // Rotate to be horizontal
+            terrain.position.y = 0;
+            scene.add(terrain);
+            console.log('Added rolling hills terrain with grass texture');
+        }
+
+        function createGrassTexture() {
+            // Create a simple grass-like texture pattern as placeholder
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            
+            // Green background
+            ctx.fillStyle = '#4a7c59';
+            ctx.fillRect(0, 0, 64, 64);
+            
+            // Add some darker green patches
+            ctx.fillStyle = '#3d6b4a';
+            for (let i = 0; i < 20; i++) {
+                ctx.fillRect(Math.random() * 64, Math.random() * 64, 4, 4);
+            }
+            
+            // Add lighter green highlights
+            ctx.fillStyle = '#5d8f6a';
+            for (let i = 0; i < 15; i++) {
+                ctx.fillRect(Math.random() * 64, Math.random() * 64, 2, 2);
+            }
+            
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function setupControls() {
+            // Keyboard
+            document.addEventListener('keydown', (e) => { keys[e.code] = true; });
+            document.addEventListener('keyup', (e) => { keys[e.code] = false; });
+            
+            // Mouse
+            renderer.domElement.addEventListener('click', () => {
+                renderer.domElement.requestPointerLock();
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (document.pointerLockElement === renderer.domElement) {
+                    player.rotation.yaw -= e.movementX * 0.002;
+                    player.rotation.pitch -= e.movementY * 0.002;
+                    player.rotation.pitch = Math.max(-1.5, Math.min(1.5, player.rotation.pitch));
+                    
+                    camera.rotation.set(player.rotation.pitch, player.rotation.yaw, 0, 'YXZ');
+                }
+            });
+        }
+
+        function updateMovement() {
+            const moveSpeed = player.speed * 0.016;
+            
+            if (keys['KeyW']) { // Forward
+                player.position.x -= Math.sin(player.rotation.yaw) * moveSpeed;
+                player.position.z -= Math.cos(player.rotation.yaw) * moveSpeed;
+            }
+            if (keys['KeyS']) { // Backward
+                player.position.x += Math.sin(player.rotation.yaw) * moveSpeed;
+                player.position.z += Math.cos(player.rotation.yaw) * moveSpeed;
+            }
+            if (keys['KeyA']) { // Left
+                player.position.x -= Math.cos(player.rotation.yaw) * moveSpeed;
+                player.position.z += Math.sin(player.rotation.yaw) * moveSpeed;
+            }
+            if (keys['KeyD']) { // Right
+                player.position.x += Math.cos(player.rotation.yaw) * moveSpeed;
+                player.position.z -= Math.sin(player.rotation.yaw) * moveSpeed;
+            }
+            
+            // Calculate terrain height at player position and keep player above it
+            const terrainHeight = getTerrainHeight(player.position.x, player.position.z);
+            player.position.y = terrainHeight + 5; // Keep player 5 units above terrain
+            
+            camera.position.set(player.position.x, player.position.y, player.position.z);
+            
+            // Update UI
+            document.getElementById('position').textContent = 
+                `${player.position.x.toFixed(1)}, ${player.position.y.toFixed(1)}, ${player.position.z.toFixed(1)}`;
+        }
+
+        function createSkyTexture() {
+            // Create a simple sky gradient as placeholder
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            
+            // Create gradient from light blue at top to white at bottom
+            const gradient = ctx.createLinearGradient(0, 0, 0, 512);
+            gradient.addColorStop(0, '#87CEEB'); // Sky blue
+            gradient.addColorStop(0.7, '#B0E0E6'); // Powder blue
+            gradient.addColorStop(1, '#F0F8FF'); // Alice blue
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Add some cloud-like shapes
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            for (let i = 0; i < 8; i++) {
+                const x = Math.random() * 512;
+                const y = Math.random() * 256;
+                const size = 30 + Math.random() * 40;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function getTerrainHeight(x, z) {
+            // Calculate the same height formula we used to generate the terrain
+            const height1 = Math.sin(x * 0.02) * 8;
+            const height2 = Math.cos(z * 0.015) * 6;
+            const height3 = Math.sin((x + z) * 0.01) * 4;
+            
+            return height1 + height2 + height3;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            updateMovement();
+            renderer.render(scene, camera);
+        }
+
+        // Start when page loads
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

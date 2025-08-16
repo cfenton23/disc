@@ -1,23 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Disc Life</title>
-  <style>
-    html, body, #game {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #0F1511; /* matches game bg */
-      overflow: hidden;     /* no scrollbars while scaling */
-    }
-    canvas { display: block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disc Golf Graphics Engine</title>
+    <style>
+        body { 
+            margin: 0; 
+            background: #87CEEB; 
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        #gameContainer { 
+            position: relative; 
+            width: 100vw; 
+            height: 100vh; 
+        }
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        #minimap {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 200px;
+            height: 150px;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid white;
+            border-radius: 8px;
+            z-index: 100;
+        }
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        #interactionPrompt {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            z-index: 150;
+            display: none;
+        }
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            z-index: 50;
+            pointer-events: none;
+        }
+        #powerMeter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 30px;
+            height: 200px;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid white;
+            border-radius: 15px;
+            z-index: 100;
+        }
+        #powerFill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to top, #00ff00 0%, #ffff00 50%, #ff0000 100%);
+            border-radius: 0 0 13px 13px;
+            transition: height 0.1s ease;
+        }
+        #aimingReticle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            z-index: 50;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <div id="game"></div>
-  <script type="module" src="/src/index.ts"></script>
+    <div id="gameContainer">
+        <div id="ui">
+            <div><strong>Hole:</strong> <span id="currentHole">1</span> / 18</div>
+            <div><strong>Par:</strong> <span id="currentPar">3</span></div>
+            <div><strong>Distance:</strong> <span id="holeDistance">150</span>ft</div>
+            <div><strong>Disc:</strong> <span id="currentDisc">Driver</span></div>
+            <div><strong>Throws:</strong> <span id="throwCount">0</span></div>
+            <div style="margin-top: 10px;">
+                <div>Nose Angle: <span id="noseAngle">0</span>°</div>
+                <div>Hyzer: <span id="hyzerAngle">0</span>°</div>
+            </div>
+        </div>
+
+        <div id="controls">
+            <div><strong>Controls:</strong></div>
+            <div id="freewalkControls">
+                <div>WASD: Move Around</div>
+                <div>Mouse: Look Around</div>
+                <div>E: Pick up Disc (when near)</div>
+                <div>T: Teleport Behind Disc (facing basket)</div>
+                <div>Click to lock mouse</div>
+            </div>
+            <div id="aimControls" style="display: none;">
+                <div>Mouse: Aim Direction</div>
+                <div>W/S: Nose Up/Down</div>
+                <div>A/D: Anhyzer/Hyzer</div>
+                <div>SPACE: Hold for Power</div>
+                <div>1/2/3: Change Disc Type</div>
+                <div>ESC: Exit Aim Mode</div>
+            </div>
+        </div>
+
+        <div id="minimap">
+            <canvas id="minimapCanvas" width="200" height="150"></canvas>
+        </div>
+
+        <div id="powerMeter">
+            <div id="powerFill" style="height: 0%"></div>
+        </div>
+
+        <div id="interactionPrompt">Press E to pick up disc</div>
+        <div id="crosshair"></div>
+        <div id="aimingReticle"></div>
+    </div>
+
+    <script type="module" src="system/main.js"></script>
+    <script type="module" src="system/terraingenerator.js"></script>
+    <script type="module" src="system/assetgenerator.js"></script>
+    <script type="module" src="system/courseassets.js"></script>
+    <script type="module" src="system/controls.js"></script>
+    <script type="module" src="system/worldgenerator.js"></script>
 </body>
 </html>
